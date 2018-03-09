@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    reverseproxy:
+        image: reverseproxy
+        ports:
+            - 443:443
+        restart: always
+
+    codescene:
+        depends_on:
+            - reverseproxy
+        image: empear/debian-onprem:latest
+        restart: always
