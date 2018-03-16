@@ -26,3 +26,8 @@ For more information about CodeScene, see the [CodeScene Documentation](https://
 ### License, Liability & Support
 
 * The contents of this repository are provided under the [MIT License](https://github.com/empear-analytics/docker-codescene-nginx-self-signed-ssl/blob/master/LICENSE.md). Other licences may apply to the software contained in the Docker images referenced here.
+
+
+### Analyze this this project on CodeScene
+
+[![](https://codescene.io/projects/2554/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/2554/jobs/latest-successful/results)
