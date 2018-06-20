@@ -5,9 +5,9 @@ The reverse proxy using Nginx is built like this:
     docker build -t reverseproxy docker-nginx/
 
 The CodeScene image should already be available from [Docker Hub](https://hub.docker.com/r/empear/debian-onprem/) under
-`empear/debian-onprem:latest`, but can also be built locally like this:
+`empear/debian-onprem:latest`, but can also be built locally like this (specify a proper CodeScene version):
 
-    docker build -t empear/debian-onprem docker-codescene/
+    docker build --build-arg CODESCENE_VERSION=2.X.Y -t empear/debian-onprem docker-codescene/
 
 ### Run
 

@@ -13,7 +13,8 @@ RUN mkdir -p /analysis
 
 VOLUME /repos
 
-ADD https://s3-eu-west-1.amazonaws.com/downloads.codescene.io/enterprise/2.3.0/codescene-enterprise-edition.standalone.jar /opt/codescene/
+ARG CODESCENE_VERSION=2.5.0
+ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 CMD ["locale"]
 CMD [ "java", "-jar", "/opt/codescene/codescene-enterprise-edition.standalone.jar" ]
