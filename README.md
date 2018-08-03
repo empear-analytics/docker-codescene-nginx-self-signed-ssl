@@ -29,6 +29,10 @@ To run CodeScene by itself, without the reverse proxy:
 
 	docker run empear/debian-onprem
 	docker run -p 3003 --name myname empear/debian-onprem
+	
+To connect to this instance:
+
+    docker exec -i -t myname /bin/bash
 
 ### Use
 
