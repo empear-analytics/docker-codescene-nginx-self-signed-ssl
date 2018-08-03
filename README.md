@@ -1,3 +1,12 @@
+This repository is an example of how to run CodeScene in a Docker
+instance behind an nginx reverse proxy. Even if you are not using Docker, the
+nginx configuration may be helpful for running CodeScene behind nginx. 
+
+`docker-compose` is used here to run two Docker images, one running
+nginx, the other with CodeScene itself. The [CodeScene
+Dockerfile](docker-codescene/Dockerfile) can also be used by itself to
+run CodeScene directly.
+
 ### Build
 
 The reverse proxy using Nginx is built like this:
@@ -11,7 +20,15 @@ The CodeScene image should already be available from [Docker Hub](https://hub.do
 
 ### Run
 
+
+To run CodeScene behind the reverse proxy, use `docker-compose` to start both instances:
+
     docker-compose up -d
+	
+To run CodeScene by itself, without the reverse proxy:
+
+	docker run empear/debian-onprem
+	docker run -p 3003 --name myname empear/debian-onprem
 
 ### Use
 
