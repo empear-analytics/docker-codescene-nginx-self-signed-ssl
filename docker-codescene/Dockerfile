@@ -16,5 +16,4 @@ VOLUME /repos
 ARG CODESCENE_VERSION=2.5.0
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
-CMD ["locale"]
 CMD [ "java", "-jar", "/opt/codescene/codescene-enterprise-edition.standalone.jar" ]
