@@ -28,11 +28,47 @@ To run CodeScene behind the reverse proxy, use `docker-compose` to start both in
 To run CodeScene by itself, without the reverse proxy:
 
 	docker pull empear/debian-onprem
-	docker run -p 3003 --name myname empear/debian-onprem
+	docker run -i -t -p 3003 --name myname empear/debian-onprem
 	
 To connect to this instance:
 
     docker exec -i -t myname /bin/bash
+
+#### Memory settings
+
+To adjust memory settings for CodeScene running inside a container, 
+you can set the `JAVA_OPTIONS` environment variable.
+
+To set "max heap" explicitly use `-Xmx`:
+
+```
+# with explicit max memory => notice that -m 500M is ignored
+docker run -p3103:3003 -m 500M -e JAVA_OPTIONS='-Xmx300m' --name codescene empear/debian-onprem
+VM settings:
+    Max. Heap Size: 300.00M
+    Ergonomics Machine Class: server
+    Using VM: OpenJDK 64-Bit Server VM
+```
+
+To let the JVM autodetect default settings based on the container's memory:
+
+```
+# with experimental options and autodetection
+# note that -XX:+UseCGroupMemoryLimitForHeap has been deprecated 
+docker run -p3103:3003 -m 500M -e JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' --name codescene empear/debian-onprem
+VM settings:
+    Max. Heap Size (Estimated): 222.50M
+    Ergonomics Machine Class: server
+    Using VM: OpenJDK 64-Bit Server VM
+```
+
+Please note, that 
+[support for `-XX:+UseCGroupMemoryLimitForHeap` has been deprecated in JDK 10](https://bugs.openjdk.java.net/browse/JDK-8194086)
+and is no longer needed.
+
+For more details, see 
+[Java inside docker: What you must know to not FAIL](https://developers.redhat.com/blog/2017/03/14/java-inside-docker/).
+
 
 ### Use
 

@@ -16,4 +16,7 @@ VOLUME /repos
 ARG CODESCENE_VERSION=2.5.1
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
-ENTRYPOINT [ "java", "-jar", "/opt/codescene/codescene-enterprise-edition.standalone.jar" ]
+# separate script used because we want to support custom JAVA_OPTIONS variable
+ADD start-codescene.sh /start-codescene.sh
+RUN chmod 755 /start-codescene.sh
+ENTRYPOINT [ "/start-codescene.sh" ]
