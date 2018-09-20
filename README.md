@@ -76,6 +76,8 @@ Browse to https://localhost. In order to use CodeScene, you will need a
 license. You can get a license on the [Empear Customer Portal](https://portal.empear.com/).
 For more information about CodeScene, see the [CodeScene Documentation](https://docs.enterprise.codescene.io/).
 
+When creating projects, you can use the `/repos` directory to store Git repositories, and the `/analysis` directory for your analysis results ("Analysis Results Destination").
+
 ### Stop
 
     docker-compose down
