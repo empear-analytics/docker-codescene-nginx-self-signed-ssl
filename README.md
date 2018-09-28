@@ -1,3 +1,5 @@
+# CodeScene on Docker
+
 This repository is an example of how to run CodeScene in a Docker
 instance behind an nginx reverse proxy. Even if you are not using Docker, the
 nginx configuration may be helpful for running CodeScene behind nginx. 
@@ -7,7 +9,16 @@ nginx, the other with CodeScene itself. The [CodeScene
 Dockerfile](docker-codescene/Dockerfile) can also be used by itself to
 run CodeScene directly.
 
-### Build
+## Install
+
+This assumes that you have a working Docker installation.
+
+Clone this repository and go to the top level directory.
+
+    git clone git@github.com:empear-analytics/docker-codescene-nginx-self-signed-ssl.git
+	cd docker-codescene-nginx-self-signed-sll
+
+## Build
 
 The reverse proxy using Nginx is built like this:
 
@@ -32,6 +43,13 @@ To run CodeScene by itself, without the reverse proxy:
 To connect to this instance:
 
     docker exec -i -t myname /bin/bash
+
+### Stop
+
+To stop the reverse proxy:
+
+    docker-compose down
+	
 
 #### Memory settings
 
