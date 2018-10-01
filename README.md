@@ -49,7 +49,7 @@ To connect to this instance:
     docker exec -i -t myname /bin/bash
 
 
-#### Bind mounts
+### Bind mounts
 
 In both the reverse proxy setup and the standalone version, the
 `/resources` directory (for the database) and the `/codescene-data`
@@ -65,7 +65,7 @@ These options are configured in `docker-compose.yml` for the reverse
 proxy setup, and in the command-line arguments for the standalone
 version.
 
-#### Memory settings
+### Memory settings
 
 To adjust memory settings for CodeScene running inside a container, 
 you can set the `JAVA_OPTIONS` environment variable.
@@ -111,7 +111,7 @@ Browse to https://localhost. In order to use CodeScene, you will need a
 license. You can get a license on the [Empear Customer Portal](https://portal.empear.com/).
 For more information about CodeScene, see the [CodeScene Documentation](https://docs.enterprise.codescene.io/).
 
-When creating projects, you can use the `/codescene-data/repos` directory to store Git repositories, and the `/codescene-data/analysis` directory for your analysis results ("Analysis Results Destination"). 
+When creating projects, you can use the `/codescene-data/repos` directory to store Git repositories, and the `/codescene-data/analyses` directory for your analysis results ("Analysis Results Destination"). 
 
 ### Stop
 
