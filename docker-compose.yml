@@ -10,5 +10,5 @@ services:
     codescene:
         depends_on:
             - reverseproxy
-        image: empear/debian-onprem:latest
+        image: empear/ubuntu-onprem:latest
         restart: always
