@@ -16,7 +16,7 @@ This assumes that you have a working Docker installation.
 Clone this repository and go to the top level directory.
 
     git clone git@github.com:empear-analytics/docker-codescene-nginx-self-signed-ssl.git
-	cd docker-codescene-nginx-self-signed-sll
+    cd docker-codescene-nginx-self-signed-sll
 
 ## Build
 
@@ -37,8 +37,8 @@ To run CodeScene behind the reverse proxy, use `docker-compose` to start both in
 	
 To run CodeScene by itself, without the reverse proxy:
 
-	docker pull empear/ubuntu-onprem
-	docker run -i -t -p 3003 --name myname empear/ubuntu-onprem
+    docker pull empear/ubuntu-onprem
+    docker run -i -t -p 3003 --name myname empear/ubuntu-onprem
 	
 To connect to this instance:
 
