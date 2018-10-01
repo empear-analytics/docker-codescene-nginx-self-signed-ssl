@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 
 services:
     reverseproxy:
@@ -12,3 +12,6 @@ services:
             - reverseproxy
         image: empear/ubuntu-onprem:latest
         restart: always
+        volumes:
+          - "./docker-codescene/codescene-data:/codescene-data"
+          - "./docker-codescene/resources:/resources"

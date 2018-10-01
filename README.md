@@ -34,24 +34,38 @@ The CodeScene image should already be available from [Docker Hub](https://hub.do
 To run CodeScene behind the reverse proxy, use `docker-compose` to start both instances:
 
     docker-compose up -d
-	
+    
 To run CodeScene by itself, without the reverse proxy:
 
     docker pull empear/ubuntu-onprem
-    docker run -i -t -p 3003 --name myname empear/ubuntu-onprem
-	
+    docker run -i -t -p 3003 \
+        --name myname \
+        --mount type=bind,source=$(PWD)/docker-codescene/codescene-data,destination=/codescene-data \
+        --mount type=bind,source=$(PWD)/docker-codescene/resources,destination=/resources \
+        empear/ubuntu-onprem
+    
 To connect to this instance:
 
     docker exec -i -t myname /bin/bash
 
-### Stop
 
-To stop the reverse proxy:
+### Bind mounts
 
-    docker-compose down
-	
+In both the reverse proxy setup and the standalone version, the
+`/resources` directory (for the database) and the `/codescene-data`
+directory, which contains directories you can use for the repos to
+analyze and for the analysis results, are bound to local directories
+in this repository.
 
-#### Memory settings
+This configuration is intended for demonstration and debugging. In a
+production setting, [Docker volumes](https://docs.docker.com/storage/volumes) would be a better
+solution.
+
+These options are configured in `docker-compose.yml` for the reverse
+proxy setup, and in the command-line arguments for the standalone
+version.
+
+### Memory settings
 
 To adjust memory settings for CodeScene running inside a container, 
 you can set the `JAVA_OPTIONS` environment variable.
@@ -72,7 +86,11 @@ To let the JVM autodetect default settings based on the container's memory:
 ```
 # with experimental options and autodetection
 # note that -XX:+UseCGroupMemoryLimitForHeap has been deprecated 
-docker run -p3103:3003 -m 500M -e JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' --name codescene empear/ubuntu-onprem
+docker run -p3103:3003 -m 500M -e \
+    JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' \
+    --mount type=bind,source=$(PWD)/docker-codescene/codescene-data,destination=/codescene-data \
+    --mount type=bind,source=$(PWD)/docker-codescene/resources,destination=/resources \
+    --name codescene empear/ubuntu-onprem 
 VM settings:
     Max. Heap Size (Estimated): 222.50M
     Ergonomics Machine Class: server
@@ -93,11 +111,14 @@ Browse to https://localhost. In order to use CodeScene, you will need a
 license. You can get a license on the [Empear Customer Portal](https://portal.empear.com/).
 For more information about CodeScene, see the [CodeScene Documentation](https://docs.enterprise.codescene.io/).
 
-When creating projects, you can use the `/repos` directory to store Git repositories, and the `/analysis` directory for your analysis results ("Analysis Results Destination").
+When creating projects, you can use the `/codescene-data/repos` directory to store Git repositories, and the `/codescene-data/analyses` directory for your analysis results ("Analysis Results Destination"). 
 
 ### Stop
 
+To stop the reverse proxy:
+
     docker-compose down
+
 
 ### License, Liability & Support
 
