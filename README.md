@@ -31,11 +31,13 @@ The CodeScene image should already be available from [Docker Hub](https://hub.do
 
 ## Run
 
-To run CodeScene behind the reverse proxy, use `docker-compose` to start both instances:
+### Run CodeScene behind the reverse proxy
+
+Use `docker-compose` to start both instances:
 
     docker-compose up -d
     
-To run CodeScene by itself, without the reverse proxy:
+### Run CodeScene by itself without the reverse proxy:
 
     docker pull empear/ubuntu-onprem
     docker run -i -t -p 3003 \
@@ -61,9 +63,9 @@ This configuration is intended for demonstration and debugging. In a
 production setting, [Docker volumes](https://docs.docker.com/storage/volumes) would be a better
 solution.
 
-These options are configured in `docker-compose.yml` for the reverse
+These options are configured in [`docker-compose.yml`](docker-compose.yml) for the reverse
 proxy setup, and in the command-line arguments for the standalone
-version.
+version (see [Run CodeScene by itself, without the reverse proxy](#run-codescene-by-itself-without-the-reverse-proxy)).
 
 ### Memory settings
 
