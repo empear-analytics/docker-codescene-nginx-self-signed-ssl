@@ -53,8 +53,8 @@ To connect to this instance:
 
 In both the reverse proxy setup and the standalone version, the
 `/resources` directory (for the database) and the `/codescene-data`
-directory, which contains directories you can use for the repos to
-analyze and for the analysis results, are bound to local directories
+directory (contains directories you can use for the repos/projects to
+analyze and for the analysis results) are bound to local directories
 in this repository.
 
 This configuration is intended for demonstration and debugging. In a
