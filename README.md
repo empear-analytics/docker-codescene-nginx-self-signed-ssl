@@ -65,7 +65,7 @@ solution.
 
 These options are configured in [`docker-compose.yml`](docker-compose.yml) for the reverse
 proxy setup, and in the command-line arguments for the standalone
-version (see [Run CodeScene by itself, without the reverse proxy](#run-codescene-by-itself-without-the-reverse-proxy)).
+version (see [Run CodeScene by itself without the reverse proxy](#run-codescene-by-itself-without-the-reverse-proxy)).
 
 ### Memory settings
 
