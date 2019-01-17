@@ -42,7 +42,6 @@ Use `docker-compose` to start both instances:
     docker pull empear/ubuntu-onprem
     docker run -i -t -p 3003 \
         --name myname \
-        --mount type=bind,source=$(PWD)/docker-codescene/codescene-data,destination=/codescene-data \
         --mount type=bind,source=$(PWD)/docker-codescene/resources,destination=/resources \
         empear/ubuntu-onprem
     
@@ -54,10 +53,13 @@ To connect to this instance:
 ### Bind mounts
 
 In both the reverse proxy setup and the standalone version, the
-`/resources` directory (for the database) and the `/codescene-data`
-directory (contains directories you can use for the repos/projects to
-analyze and for the analysis results) are bound to local directories
-in this repository.
+`/resources` directory is bound to local the
+[`docker-codescene/resources`](docker-codescene/resources) directory
+in this repository. It contains two directories, `repos` and
+`analyses` that can be used to store Git repositories and the analysis
+result files that CodeScene produces. CodeScene's internal database is
+also stored in `/resources`. By using these directories, your data
+will be persisted beyond the life of the Docker container.
 
 This configuration is intended for demonstration and debugging. In a
 production setting, [Docker volumes](https://docs.docker.com/storage/volumes) would be a better
@@ -90,7 +92,6 @@ To let the JVM autodetect default settings based on the container's memory:
 # note that -XX:+UseCGroupMemoryLimitForHeap has been deprecated 
 docker run -p3103:3003 -m 500M -e \
     JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' \
-    --mount type=bind,source=$(PWD)/docker-codescene/codescene-data,destination=/codescene-data \
     --mount type=bind,source=$(PWD)/docker-codescene/resources,destination=/resources \
     --name codescene empear/ubuntu-onprem 
 VM settings:
@@ -113,7 +114,7 @@ Browse to https://localhost. In order to use CodeScene, you will need a
 license. You can get a license on the [Empear Customer Portal](https://portal.empear.com/).
 For more information about CodeScene, see the [CodeScene Documentation](https://docs.enterprise.codescene.io/).
 
-When creating projects, you can use the `/codescene-data/repos` directory to store Git repositories, and the `/codescene-data/analyses` directory for your analysis results ("Analysis Results Destination"). 
+When creating projects, you can use the `/resources/repos` directory to store Git repositories, and the `/resources/analyses` directory for your analysis results ("Analysis Results Destination"). 
 
 ### Stop
 
