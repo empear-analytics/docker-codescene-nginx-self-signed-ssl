@@ -42,7 +42,7 @@ Use `docker-compose` to start both instances:
     docker pull empear/ubuntu-onprem
     docker run -i -t -p 3003 \
         --name myname \
-        --mount type=bind,source=$(PWD)/docker-codescene/resources,destination=/resources \
+        --mount type=bind,source=$(PWD)/docker-codescene/codescene,destination=/codescene \
         empear/ubuntu-onprem
     
 To connect to this instance:
@@ -50,16 +50,25 @@ To connect to this instance:
     docker exec -i -t myname /bin/bash
 
 
-### Bind mounts
+### Bind mount and/or Docker volume
 
 In both the reverse proxy setup and the standalone version, the
-`/resources` directory is bound to local the
-[`docker-codescene/resources`](docker-codescene/resources) directory
+`/codescene` directory is bound to local the
+[`docker-codescene/codescene`](docker-codescene/codescene) directory
 in this repository. It contains two directories, `repos` and
 `analyses` that can be used to store Git repositories and the analysis
 result files that CodeScene produces. CodeScene's internal database is
-also stored in `/resources`. By using these directories, your data
+also stored in `/codescene`, as well as a logfile. By using these directories, your data
 will be persisted beyond the life of the Docker container.
+
+The configuration presented here uses CodeScene's optional environment
+variables `CODESCENE_ANALYSIS_RESULTS_ROOT` and
+`CODESCENE_CLOSED_REPOSITORIES_ROOT`. Their purpose is to ensure that
+users cannot create repositories or store analysis results outside of
+the `/codescene` directory. In conjunction with the
+`CODESCENE_DB_PATH`, we can be sure that all the necessary data for
+persisting CodeScene is in a single, easy-to-manage location. You can
+of course adjust these variables to fit your specific needs.
 
 This configuration is intended for demonstration and debugging. In a
 production setting, [Docker volumes](https://docs.docker.com/storage/volumes) would be a better
@@ -92,7 +101,7 @@ To let the JVM autodetect default settings based on the container's memory:
 # note that -XX:+UseCGroupMemoryLimitForHeap has been deprecated 
 docker run -p3103:3003 -m 500M -e \
     JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' \
-    --mount type=bind,source=$(PWD)/docker-codescene/resources,destination=/resources \
+    --mount type=bind,source=$(PWD)/docker-codescene/codescene,destination=/codescene \
     --name codescene empear/ubuntu-onprem 
 VM settings:
     Max. Heap Size (Estimated): 222.50M
@@ -113,8 +122,6 @@ For more details, see
 Browse to https://localhost. In order to use CodeScene, you will need a
 license. You can get a license on the [Empear Customer Portal](https://portal.empear.com/).
 For more information about CodeScene, see the [CodeScene Documentation](https://docs.enterprise.codescene.io/).
-
-When creating projects, you can use the `/resources/repos` directory to store Git repositories, and the `/resources/analyses` directory for your analysis results ("Analysis Results Destination"). 
 
 ### Stop
 
