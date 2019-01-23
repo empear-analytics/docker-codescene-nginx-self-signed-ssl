@@ -63,12 +63,13 @@ will be persisted beyond the life of the Docker container.
 
 The configuration presented here uses CodeScene's optional environment
 variables `CODESCENE_ANALYSIS_RESULTS_ROOT` and
-`CODESCENE_CLOSED_REPOSITORIES_ROOT`. Their purpose is to ensure that
-users cannot create repositories or store analysis results outside of
-the `/codescene` directory. In conjunction with the
-`CODESCENE_DB_PATH`, we can be sure that all the necessary data for
-persisting CodeScene is in a single, easy-to-manage location. You can
-of course adjust these variables to fit your specific needs.
+`CODESCENE_CLOSED_REPOSITORIES_ROOT` (available as of CodeScene
+v2.8.1). Their purpose is to ensure that users cannot create
+repositories or store analysis results outside of the `/codescene`
+directory. In conjunction with the `CODESCENE_DB_PATH`, we can be sure
+that all the necessary data for persisting CodeScene is in a single,
+easy-to-manage location. You can of course adjust these variables to
+fit your specific needs.
 
 This configuration is intended for demonstration and debugging. In a
 production setting, [Docker volumes](https://docs.docker.com/storage/volumes) would be a better
