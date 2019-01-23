@@ -11,12 +11,20 @@ ENV LC_ALL C.UTF-8
 ENV LC_CTYPE C.UTF-8
 
 RUN mkdir -p /opt/codescene
+RUN mkdir -p /codescene/analysis
+RUN mkdir -p /codescene/repos
+RUN mkdir -p /codescene/log
 
-ARG CODESCENE_VERSION=2.8.0
+ARG CODESCENE_VERSION=2.8.1
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 
 # separate script used because we want to support custom JAVA_OPTIONS variable
 ADD start-codescene.sh /start-codescene.sh
 RUN chmod 755 /start-codescene.sh
+
+ENV CODESCENE_DB_PATH=/codescene
+ENV CODESCENE_ANALYSIS_RESULTS_ROOT=/codescene/analysis
+ENV CODESCENE_CLOSED_REPOSITORIES_ROOT=/codescene/repos
+
 ENTRYPOINT [ "/start-codescene.sh" ]
