@@ -13,4 +13,4 @@ services:
         image: empear/ubuntu-onprem:latest
         restart: always
         volumes:
-          - "./docker-codescene/resources:/codescene"
+          - "./docker-codescene/codescene:/codescene"
