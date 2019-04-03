@@ -15,7 +15,7 @@ RUN mkdir -p /codescene/analysis
 RUN mkdir -p /codescene/repos
 RUN mkdir -p /codescene/log
 
-ARG CODESCENE_VERSION=3.0.2
+ARG CODESCENE_VERSION=3.0.5
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 
