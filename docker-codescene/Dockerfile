@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.10
 
-RUN apt-get update; apt-get install -y git openjdk-8-jre
+RUN apt-get update; apt-get install -y git openjdk-11-jdk
 RUN apt-get install -y locales 
 
 ## because this is Docker, we can just set these without bothering
@@ -15,7 +15,7 @@ RUN mkdir -p /codescene/analysis
 RUN mkdir -p /codescene/repos
 RUN mkdir -p /codescene/log
 
-ARG CODESCENE_VERSION=2.8.2
+ARG CODESCENE_VERSION=3.0.5
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 
