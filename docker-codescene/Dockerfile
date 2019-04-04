@@ -23,7 +23,7 @@ EXPOSE 3003
 ADD start-codescene.sh /start-codescene.sh
 RUN chmod 755 /start-codescene.sh
 
-ENV CODESCENE_DB_PATH=/codescene
+ENV CODESCENE_DB_PATH=/codescene/codescene
 ENV CODESCENE_ANALYSIS_RESULTS_ROOT=/codescene/analysis
 ENV CODESCENE_CLOSED_REPOSITORIES_ROOT=/codescene/repos
 
