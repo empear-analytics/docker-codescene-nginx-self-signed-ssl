@@ -1,3 +1,4 @@
 *.iml
 .idea
 /docker-codescene/resources/caacs_enterprise.db.mv.db
+/docker-codescene/codescene/codescene.log
