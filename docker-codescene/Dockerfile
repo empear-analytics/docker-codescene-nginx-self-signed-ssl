@@ -1,7 +1,10 @@
 FROM ubuntu:18.10
 
-RUN apt-get update; apt-get install -y git openjdk-11-jdk
-RUN apt-get install -y locales 
+# To workaround git authentication issues with libcurl 7.61.0 installed with 18.10
+# Azure DevOps clone fails with personal access tokens -> see https://github.com/Microsoft/Git-Credential-Manager-for-Mac-and-Linux/issues/102
+RUN echo "deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted" >> /etc/apt/sources.list
+
+RUN apt-get update; apt-get install -y git openjdk-11-jdk locales libcurl3-gnutls=7.58.0*
 
 ## because this is Docker, we can just set these without bothering
 ## with most of the locale infrastructure
