@@ -27,8 +27,12 @@ The reverse proxy using Nginx is built like this:
 The CodeScene image should already be available from [Docker Hub](https://hub.docker.com/r/empear/ubuntu-onprem/) under
 `empear/ubuntu-onprem:latest`, but can also be built locally like this (specify a proper CodeScene version):
 
-    docker build --build-arg CODESCENE_VERSION=3.X.Y -t empear/ubuntu-onprem docker-codescene/
+    docker build -t empear/ubuntu-onprem docker-codescene/
 
+If you want to use a specific version of CodeScene, you can add a `--build-arg`:
+
+    docker build  --build-arg CODESCENE_VERSION=3.X.Y -t empear/ubuntu-onprem docker-codescene/
+	
 ## Run
 
 ### Run CodeScene behind the reverse proxy
