@@ -106,7 +106,7 @@ To let the JVM autodetect default settings based on the container's memory:
 # note that -XX:+UseCGroupMemoryLimitForHeap has been deprecated 
 docker run -p3103:3003 -m 500M -e \
     JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' \
-    --mount type=bind,source=$(PWD)/docker-codescene/codescene,destination=/codescene \
+    --mount type=bind,source=$PWD/docker-codescene/codescene,destination=/codescene \
     --name codescene empear/ubuntu-onprem 
 VM settings:
     Max. Heap Size (Estimated): 222.50M
