@@ -46,7 +46,7 @@ Use `docker-compose` to start both instances:
     docker pull empear/ubuntu-onprem
     docker run -i -t -p 3003 \
         --name myname \
-        --mount type=bind,source=$(PWD)/docker-codescene/codescene,destination=/codescene \
+        --mount type=bind,source=$PWD/docker-codescene/codescene,destination=/codescene \
         empear/ubuntu-onprem
     
 To connect to this instance:
