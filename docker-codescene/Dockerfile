@@ -18,7 +18,7 @@ RUN mkdir -p /codescene/analysis
 RUN mkdir -p /codescene/repos
 RUN mkdir -p /codescene/log
 
-ARG CODESCENE_VERSION=3.0.5
+ARG CODESCENE_VERSION=3.0.6
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 
@@ -28,6 +28,6 @@ RUN chmod 755 /start-codescene.sh
 
 ENV CODESCENE_DB_PATH=/codescene/codescene
 ENV CODESCENE_ANALYSIS_RESULTS_ROOT=/codescene/analysis
-ENV CODESCENE_CLOSED_REPOSITORIES_ROOT=/codescene/repos
+ENV CODESCENE_CLONED_REPOSITORIES_ROOT=/codescene/repos
 
 ENTRYPOINT [ "/start-codescene.sh" ]
