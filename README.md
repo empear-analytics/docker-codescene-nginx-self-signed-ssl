@@ -122,6 +122,16 @@ For more details, see
 [Java inside docker: What you must know to not FAIL](https://developers.redhat.com/blog/2017/03/14/java-inside-docker/).
 
 
+### Timezones
+
+CodeScene, in general, uses default system's timezone.
+In our docker image we set the default timezone explicitly to UTC via [`CODESCENE_TIMEZONE` env var](https://github.com/empear-analytics/docker-codescene-nginx-self-signed-ssl/blob/master/docker-codescene/Dockerfile#L30).
+This can be overriden when the docker image is run:
+```
+docker run -p3003 -e CODESCENE_TIMEZONE='Europe/Stockholm' empear/ubuntu-onprem
+```
+
+
 ### Use
 
 Browse to https://localhost. In order to use CodeScene, you will need a
