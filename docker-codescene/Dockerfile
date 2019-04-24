@@ -15,7 +15,7 @@ ENV LC_CTYPE C.UTF-8
 
 RUN mkdir -p /opt/codescene
 
-ARG CODESCENE_VERSION=3.0.6
+ARG CODESCENE_VERSION=3.0.9
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 
@@ -27,5 +27,6 @@ ENV CODESCENE_DIR /codescene
 ENV CODESCENE_DB_PATH=${CODESCENE_DIR}/codescene
 ENV CODESCENE_ANALYSIS_RESULTS_ROOT=${CODESCENE_DIR}/analysis
 ENV CODESCENE_CLONED_REPOSITORIES_ROOT=${CODESCENE_DIR}/repos
+ENV CODESCENE_TIMEZONE UTC
 
 ENTRYPOINT [ "/start-codescene.sh" ]
