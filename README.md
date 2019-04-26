@@ -130,7 +130,11 @@ This can be overriden when the docker image is run:
 ```
 docker run -p3003 -e CODESCENE_TIMEZONE='Europe/Stockholm' empear/ubuntu-onprem
 ```
-
+Note that if you use docker-compose you need to leave out quotes:
+```
+        environment:
+          - CODESCENE_TIMEZONE=Europe/Stockholm
+```
 
 ### Use
 
