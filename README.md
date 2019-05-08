@@ -84,6 +84,52 @@ These options are configured in [`docker-compose.yml`](docker-compose.yml) for t
 proxy setup, and in the command-line arguments for the standalone
 version (see [Run CodeScene by itself without the reverse proxy](#run-codescene-by-itself-without-the-reverse-proxy)).
 
+### SSH keys
+
+To clone remote repositories, CodeScene will need SSH
+credentials. 
+
+#### Keys without a passphrase
+
+If you are comfortable using SSH keys that do not require a
+passphrase, the simplest solution is to bind a valid `.ssh` directory
+on the host system to `/root/.ssh` inside the container.
+
+With the standalone setup, this would mean supplying an additional `--mount` argument to `docker run`, something like:
+
+```
+--mount type=bind,source=$HOME/codescene-git-keys,destination=/root/.ssh
+```
+
+With the `docker-compose` solution, you would add the following to the
+`volumes` section of the `codescene` stanza:
+
+```
+    -"${HOME}/codescene-git-keys:/root/.ssh
+```
+
+The directory at `$HOME/codescene-git-keys` could be tested outside of
+Docker to be sure that the SSH connection works correctly. Make sure
+that `known_hosts` contains a reference to the servers you will be
+cloning from.
+
+#### GitHub deploy keys
+
+For greater security, the solution above could be combined with
+GitHub's [deploy keys](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys). 
+
+#### Linux host: ssh-agent forwarding
+
+When running on a Linux host, it may be possible to forward the host
+machine's `ssh-agent` to the Docker container by mounting a volume
+corresponding to $SSH_AUTH_SOCK (untested):
+
+```
+-mount type=bind,source$(dirname $SSH_AUTH_SOCK),destination=$(dirname $SSH_AUTH_SOCK) \
+-e SSH_AUTH_SOCK=$SSH_AUTH_SOCK 
+```
+
+
 ### Memory settings
 
 To adjust memory settings for CodeScene running inside a container, 
