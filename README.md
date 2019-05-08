@@ -129,6 +129,13 @@ corresponding to $SSH_AUTH_SOCK (untested):
 -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK 
 ```
 
+#### Dedicated ssh-agent containers
+
+You may be able to use a dedicated Docker container to store SSH credentials. See:
+
+- [uber-common/docker-ssh-forward](https://github.com/uber-common/docker-ssh-agent-forward)
+- [nadeas/ssh-agent](https://github.com/nardeas/ssh-agent)
+
 
 ### Memory settings
 
