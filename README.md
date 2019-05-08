@@ -57,13 +57,18 @@ To connect to this instance:
 ### Bind mount and/or Docker volume
 
 In both the reverse proxy setup and the standalone version, the
-`/codescene` directory is bound to local the
+`/codescene` directory is bound to the
 [`docker-codescene/codescene`](docker-codescene/codescene) directory
 in this repository. It contains two directories, `repos` and
 `analyses` that can be used to store Git repositories and the analysis
 result files that CodeScene produces. CodeScene's internal database is
 also stored in `/codescene`, as well as a logfile. By using these directories, your data
 will be persisted beyond the life of the Docker container.
+
+The standalone command presented above uses the `bind` mount type, for
+ease of demonstration and debugging. In a production setting, [Docker
+volumes](https://docs.docker.com/storage/volumes) would be a better
+solution. The `docker-compose` configuration uses a volume.
 
 The configuration presented here uses CodeScene's optional environment
 variables `CODESCENE_ANALYSIS_RESULTS_ROOT` and
@@ -74,10 +79,6 @@ directory. In conjunction with the `CODESCENE_DB_PATH`, we can be sure
 that all the necessary data for persisting CodeScene is in a single,
 easy-to-manage location. You can of course adjust these variables to
 fit your specific needs.
-
-This configuration is intended for demonstration and debugging. In a
-production setting, [Docker volumes](https://docs.docker.com/storage/volumes) would be a better
-solution.
 
 These options are configured in [`docker-compose.yml`](docker-compose.yml) for the reverse
 proxy setup, and in the command-line arguments for the standalone
