@@ -84,10 +84,14 @@ These options are configured in [`docker-compose.yml`](docker-compose.yml) for t
 proxy setup, and in the command-line arguments for the standalone
 version (see [Run CodeScene by itself without the reverse proxy](#run-codescene-by-itself-without-the-reverse-proxy)).
 
-### SSH keys
+### Authentication for remote Git repositories
 
-To clone remote repositories, CodeScene will need SSH
-credentials. 
+To analyze code located on remote servers, CodeScene needs to be able
+to clone it with Git. For public repositories, cloning via `https` is
+sufficient.  Private repositories will require authentication
+credentials, for which SSH keys are the recommended form. However,
+communicating SSH credentials to a Docker container can sometimes be
+tricky.
 
 #### Keys without a passphrase
 
@@ -105,7 +109,7 @@ With the `docker-compose` solution, you would add the following to the
 `volumes` section of the `codescene` stanza:
 
 ```
-    -"${HOME}/codescene-git-keys:/root/.ssh
+    -"${HOME}/codescene-git-keys:/root/.ssh"
 ```
 
 The directory at `$HOME/codescene-git-keys` could be tested outside of
@@ -115,8 +119,9 @@ cloning from.
 
 #### GitHub deploy keys
 
-For greater security, the solution above could be combined with
-GitHub's [deploy keys](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys). 
+For greater security, if your remote code is on GitHub, the solution
+above could be combined with GitHub's [deploy
+keys](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys).
 
 #### Linux host: ssh-agent forwarding
 
