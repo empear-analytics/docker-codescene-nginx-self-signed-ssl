@@ -72,7 +72,7 @@ solution. The `docker-compose` configuration uses a volume.
 
 The configuration presented here uses CodeScene's optional environment
 variables `CODESCENE_ANALYSIS_RESULTS_ROOT` and
-`CODESCENE_CLOSED_REPOSITORIES_ROOT` (available as of CodeScene
+`CODESCENE_CLONED_REPOSITORIES_ROOT` (available as of CodeScene
 v2.8.1). Their purpose is to ensure that users cannot create
 repositories or store analysis results outside of the `/codescene`
 directory. In conjunction with the `CODESCENE_DB_PATH`, we can be sure
