@@ -13,4 +13,16 @@ services:
         image: empear/ubuntu-onprem:latest
         restart: always
         volumes:
-          - "./docker-codescene/codescene:/codescene"
+          # - "./docker-codescene/codescene:/codescene"
+          # using a named volume is recommended and more performant than the above "bind mount"
+          # https://docs.docker.com/compose/compose-file/#volumes
+          - type: volume
+            source: codescene
+            target: /codescene
+          - type: volume
+            source: ssh-keys
+            target: /root/.ssh
+
+volumes:
+  codescene: {}
+  ssh-keys: {}
