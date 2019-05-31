@@ -65,10 +65,10 @@ result files that CodeScene produces. CodeScene's internal database is
 also stored in `/codescene`, as well as a logfile. By using these directories, your data
 will be persisted beyond the life of the Docker container.
 
-The standalone command presented above uses the `bind` mount type, for
+Both the standalone command presented above and the `docker-compose` configuration use the `bind` mount type, for
 ease of demonstration and debugging. In a production setting, [Docker
 volumes](https://docs.docker.com/storage/volumes) would be a better
-solution. The `docker-compose` configuration uses a volume.
+solution.
 
 The configuration presented here uses CodeScene's optional environment
 variables `CODESCENE_ANALYSIS_RESULTS_ROOT` and
