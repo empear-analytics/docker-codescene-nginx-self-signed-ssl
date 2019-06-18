@@ -134,7 +134,7 @@ machine's `ssh-agent` to the Docker container by mounting a volume
 corresponding to $SSH_AUTH_SOCK (untested):
 
 ```
--mount type=bind,source$(dirname $SSH_AUTH_SOCK),destination=$(dirname $SSH_AUTH_SOCK) \
+--mount type=bind,source=$(dirname $SSH_AUTH_SOCK),destination=$(dirname $SSH_AUTH_SOCK) \
 -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK 
 ```
 
