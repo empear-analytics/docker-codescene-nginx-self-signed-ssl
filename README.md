@@ -16,7 +16,7 @@ This assumes that you have a working Docker installation.
 Clone this repository and go to the top level directory.
 
     git clone git@github.com:empear-analytics/docker-codescene-nginx-self-signed-ssl.git
-    cd docker-codescene-nginx-self-signed-sll
+    cd docker-codescene-nginx-self-signed-ssl
 
 ## Build
 
