@@ -15,7 +15,7 @@ ENV LC_CTYPE C.UTF-8
 
 RUN mkdir -p /opt/codescene
 
-ARG CODESCENE_VERSION=3.4.0
+ARG CODESCENE_VERSION=3.4.2
 ADD https://downloads.codescene.io/enterprise/${CODESCENE_VERSION}/codescene-enterprise-edition.standalone.jar /opt/codescene/
 EXPOSE 3003
 
