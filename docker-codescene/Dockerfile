@@ -6,6 +6,9 @@ RUN echo "deb http://security.ubuntu.com/ubuntu/ bionic-security main restricted
 
 RUN apt-get update; apt-get install -y git openjdk-11-jdk locales libcurl3-gnutls=7.58.0*
 
+# debugging utilities
+RUN apt-get install -y netcat rlwrap
+
 ## because this is Docker, we can just set these without bothering
 ## with most of the locale infrastructure
 ENV LANG C.UTF-8
