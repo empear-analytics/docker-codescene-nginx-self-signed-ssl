@@ -14,7 +14,7 @@ services:
         restart: always
         volumes:
           - "./docker-codescene/codescene:/codescene"
-        environment:
+        # environment:
           # raise codescene log level for troubleshooting
           # - CODESCENE_LOG_LEVEL=DEBUG
           # provide custom java options, e.g. proxy settings for project management integration
