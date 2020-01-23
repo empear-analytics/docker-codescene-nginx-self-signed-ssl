@@ -6,6 +6,8 @@ services:
         ports:
             - 443:443
         restart: always
+        volumes:
+            - "/etc/letsencrypt/:/letsencrypt"
 
     codescene:
         depends_on:
