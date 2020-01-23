@@ -18,6 +18,13 @@ Clone this repository and go to the top level directory.
     git clone git@github.com:empear-analytics/docker-codescene-nginx-self-signed-ssl.git
     cd docker-codescene-nginx-self-signed-ssl
 
+### Prepare the host and reverse proxy configuration for Letsencrypt SSL certificate
+
+Install certbot on the host according to the instructions found here: https://certbot.eff.org/lets-encrypt/ubuntubionic-other
+Replace `**domain_name**` with your correct domain name in docker-nginx/nginx.conf
+
+The complete code is available in the `using_letsecrypt_ssl` branch - see https://github.com/empear-analytics/docker-codescene-nginx-self-signed-ssl/commit/1db5245b40b10ee954e3b23261f40b6e29a4b665.
+
 ## Build
 
 The reverse proxy using Nginx is built like this:
