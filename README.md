@@ -1,3 +1,4 @@
+
 # CodeScene on Docker
 
 This repository is an example of how to run CodeScene in a Docker
@@ -17,6 +18,11 @@ Clone this repository and go to the top level directory.
 
     git clone git@github.com:empear-analytics/docker-codescene-nginx-self-signed-ssl.git
     cd docker-codescene-nginx-self-signed-ssl
+
+### Prepare the host and reverse proxy configuration for Letsencrypt certificate
+
+Install certbot on the host according to the instructions found here: https://certbot.eff.org/lets-encrypt/ubuntubionic-other
+Replace `**domain_name**` with your correct domain name in docker-nginx/nginx.conf
 
 ## Build
 
