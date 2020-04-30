@@ -152,6 +152,29 @@ You may be able to use a dedicated Docker container to store SSH credentials. Se
 - [uber-common/docker-ssh-forward](https://github.com/uber-common/docker-ssh-agent-forward)
 - [nadeas/ssh-agent](https://github.com/nardeas/ssh-agent)
 
+### Path prefix
+
+In some situations, it may be necessary to run CodeScene under a path
+rather than at the root, eg. `example.com/codescene` rather than
+simply `example.com`.
+
+To do this, you can use the `CODESCENE_PATH_PREFIX` by setting it in
+the [Dockerfile](docker-codescene/Dockerfile). The prefix you add
+there will be appended to all internal links in CodeScene.
+
+If you were to use this solution in conjunction with nginx, your [nginx.conf](docker-nginx/nginx.conf) file might include something like this:
+
+```
+location /codescene {
+  return 302 /codescene/;
+}
+  
+location /codescene/  {
+  proxy_pass http://codescene:3003/;
+  proxy_redirect http:// $scheme://$http_host/codescene;
+ ```
+
+
 
 ### Memory settings
 
