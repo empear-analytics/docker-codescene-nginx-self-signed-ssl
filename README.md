@@ -111,8 +111,8 @@ This volume can then be referenced when starting the Docker container:
         --mount type=volume,source=codescene-volume,target=/codescene \
         empear/ubuntu-onprem
 
-Please refer to the [https://docs.docker.com/storage/volumes](Docker
-documentation) for instructions on managing your Docker volumes.
+Please refer to the [Docker documentation](https://docs.docker.com/storage/volumes)
+for instructions on managing your Docker volumes.
 
 
 ### Authentication for remote Git repositories
