@@ -79,17 +79,41 @@ solution.
 
 The configuration presented here uses CodeScene's optional environment
 variables `CODESCENE_ANALYSIS_RESULTS_ROOT` and
-`CODESCENE_CLONED_REPOSITORIES_ROOT` (available as of CodeScene
-v2.8.1). Their purpose is to ensure that users cannot create
+`CODESCENE_CLONED_REPOSITORIES_ROOT`. Their purpose is to ensure that users cannot create
 repositories or store analysis results outside of the `/codescene`
 directory. In conjunction with the `CODESCENE_DB_PATH`, we can be sure
 that all the necessary data for persisting CodeScene is in a single,
 easy-to-manage location. You can of course adjust these variables to
 fit your specific needs.
 
-These options are configured in [`docker-compose.yml`](docker-compose.yml) for the reverse
-proxy setup, and in the command-line arguments for the standalone
-version (see [Run CodeScene by itself without the reverse proxy](#run-codescene-by-itself-without-the-reverse-proxy)).
+Whether you use volumes or bind mounts, they must be passed to the
+Docker container at run time. 
+
+In the full reverse proxy setup using `docker-compose`, this is done
+in the `volumes` stanza of the configuration.  The
+[`docker-compose.yml`](docker-compose.yml) file in this repository
+uses a Docker volume. To use a bind mount with `docker-compose`, or
+for more detailed instructions, please refer to the documentation
+[here](https://docs.docker.com/compose/compose-file/#volumes).
+
+For the standalone configuration using a bind mount, see [Run
+CodeScene by itself without the reverse
+proxy](#run-codescene-by-itself-without-the-reverse-proxy). To use a
+Docker volume in the standalone configuration, you must first [create
+a volume](https://docs.docker.com/storage/volumes/#create-and-manage-volumes):
+
+    docker volume create codescene-volume
+
+This volume can then be referenced when starting the Docker container:
+
+    docker run -i -t -p 3003 \
+        --name myname \
+        --mount type=volume,source=codescene-volume,target=/codescene \
+        empear/ubuntu-onprem
+
+Please refer to the [Docker documentation](https://docs.docker.com/storage/volumes)
+for instructions on managing your Docker volumes.
+
 
 ### Authentication for remote Git repositories
 
