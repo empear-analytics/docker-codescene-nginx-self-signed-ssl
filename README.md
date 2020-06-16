@@ -196,6 +196,7 @@ location /codescene {
 location /codescene/  {
   proxy_pass http://codescene:3003/;
   proxy_redirect http:// $scheme://$http_host/codescene;
+}  
  ```
 
 
