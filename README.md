@@ -52,7 +52,7 @@ Use `docker-compose` to start both instances:
     docker pull empear/ubuntu-onprem
     docker run -i -t -p 3003 \
         --name myname \
-        --mount type=bind,source=$PWD/docker-codescene/codescene,destination=/codescene \
+        --mount type=bind,source=$PWD/codescene,destination=/codescene \
         empear/ubuntu-onprem
     
 To connect to this instance:
@@ -63,10 +63,9 @@ To connect to this instance:
 ### Bind mount and/or Docker volume
 
 In both the reverse proxy setup and the standalone version, the
-`/codescene` directory is bound to the
-[`docker-codescene/codescene`](docker-codescene/codescene) directory
-in this repository. It contains two directories, `repos` and
-`analyses` that can be used to store Git repositories and the analysis
+`/codescene` directory in the container is bound to the local
+`codescene` subdirectory. It will contain two directories, `repos` and
+`analyses` that are used to store Git repositories and the analysis
 result files that CodeScene produces. CodeScene's internal database is
 also stored in `/codescene`, as well as a logfile. By using these directories, your data
 will be persisted beyond the life of the Docker container.
@@ -181,8 +180,7 @@ In some situations, it may be necessary to run CodeScene under a path
 rather than at the root, eg. `example.com/codescene` rather than
 simply `example.com`.
 
-To do this, you can use the `CODESCENE_PATH_PREFIX` by setting it in
-the [Dockerfile](docker-codescene/Dockerfile). The prefix you add
+To do this, you can use the `CODESCENE_PATH_PREFIX` environment variable. The prefix you add
 there will be appended to all internal links in CodeScene.
 
 If you were to use this solution in conjunction with nginx, your [nginx.conf](docker-nginx/nginx.conf) file might include something like this:
@@ -223,7 +221,7 @@ To let the JVM autodetect default settings based on the container's memory:
 # note that -XX:+UseCGroupMemoryLimitForHeap has been deprecated 
 docker run -p3103:3003 -m 500M -e \
     JAVA_OPTIONS='-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=2' \
-    --mount type=bind,source=$PWD/docker-codescene/codescene,destination=/codescene \
+    --mount type=bind,source=$PWD/codescene,destination=/codescene \
     --name codescene empear/ubuntu-onprem 
 VM settings:
     Max. Heap Size (Estimated): 222.50M
@@ -238,11 +236,11 @@ and is no longer needed.
 For more details, see 
 [Java inside docker: What you must know to not FAIL](https://developers.redhat.com/blog/2017/03/14/java-inside-docker/).
 
-
+Ppre
 ### Timezones
 
 CodeScene, in general, uses default system's timezone.
-In our docker image we set the default timezone explicitly to UTC via [`CODESCENE_TIMEZONE` env var](https://github.com/empear-analytics/docker-codescene-nginx-self-signed-ssl/blob/master/docker-codescene/Dockerfile#L30).
+In our docker image we set the default timezone explicitly to UTC via the `CODESCENE_TIMEZONE` env var.
 This can be overriden when the docker image is run:
 ```
 docker run -p3003 -e CODESCENE_TIMEZONE='Europe/Stockholm' empear/ubuntu-onprem

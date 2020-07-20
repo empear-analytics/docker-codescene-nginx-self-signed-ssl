@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
     reverseproxy:
-        image: reverseproxy
+        build: docker-nginx
         ports:
             - 443:443
         restart: always
@@ -13,7 +13,7 @@ services:
         image: empear/ubuntu-onprem:latest
         restart: always
         volumes:
-          - "./docker-codescene/codescene:/codescene"
+          - "./codescene:/codescene"
         # environment:
           # raise codescene log level for troubleshooting
           # - CODESCENE_LOG_LEVEL=DEBUG
