@@ -10,7 +10,7 @@ services:
     codescene:
         depends_on:
             - reverseproxy
-        image: empear/ubuntu-onprem:latest
+        image: empear/codescene:latest
         restart: always
         volumes:
           - "./docker-codescene/codescene:/codescene"
