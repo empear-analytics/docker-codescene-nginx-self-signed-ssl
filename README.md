@@ -1,5 +1,7 @@
 # CodeScene on Docker
 
+## Note: this is only an example how to run CodeScene behind an nginx proxy server. The image in the docker-codescene/ directory isn't maintained and you should use https://hub.docker.com/r/empear/codescene instead
+
 This repository is an example of how to run CodeScene in a Docker
 instance behind an nginx reverse proxy. Even if you are not using Docker, the
 nginx configuration may be helpful for running CodeScene behind nginx. 
