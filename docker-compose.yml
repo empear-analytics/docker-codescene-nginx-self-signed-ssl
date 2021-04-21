@@ -2,7 +2,7 @@ version: '3.2'
 
 services:
     reverseproxy:
-        image: reverseproxy
+        build: docker-nginx
         ports:
             - 443:443
         restart: always
